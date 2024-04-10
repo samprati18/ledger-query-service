@@ -67,6 +67,10 @@ Here are the main tables used in the ledger system:
 
 - **Endpoint**: `http://localhost:8081/ledger/historicalBalances/{walletId}?timstamp=` (GET)
 - **Description**: Fetches historical balances of a wallet based on the provided `walletId` and timestamp. If the `timestamp` parameter is null, it retrieves records by `walletId` only. If a `timestamp` is provided, it fetches records by both `walletId` and `timestamp`. This endpoint retrieves data from the `historical_balance_view` table.
+-  - **Example curl command**:
+```bash
+curl --location --request PUT 'http://localhost:8081/ledger/historicalBalances/1?timestamp=2024-04-10T09:16:47.403609600'
+```
 
 ## Assumptions
 
