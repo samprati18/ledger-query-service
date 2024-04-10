@@ -26,7 +26,7 @@ public class AssetMovementChangeConsumer {
         this.entityMapper=entityMapper;
     }
 
-    @KafkaListener(topics = "ledger-asset-movement-event", groupId = "ledger-group")
+    @KafkaListener(topics = "${ledger.asset.movement.event.topic}", groupId = "${ledger.consumer.group.id}")
     public void consume(String message) {
         // Assuming the message contains the updated account state information
         // Parse the message and update the account state in the database

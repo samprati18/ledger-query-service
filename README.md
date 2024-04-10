@@ -65,6 +65,11 @@ Here are the main tables used in the ledger system:
 
 ### Historical Balance of Wallet
 
-- **Endpoint**: `http://localhost:8081/ledger/historical-balances/{walletId}?timstamp=` (GET)
+- **Endpoint**: `http://localhost:8081/ledger/historicalBalances/{walletId}?timstamp=` (GET)
 - **Description**: Fetches historical balances of a wallet based on the provided `walletId` and timestamp. If the `timestamp` parameter is null, it retrieves records by `walletId` only. If a `timestamp` is provided, it fetches records by both `walletId` and `timestamp`. This endpoint retrieves data from the `historical_balance_view` table.
+
+## Assumptions
+
+- With the help of Dockerfile and Kubernetes deployment file (ledger-query-service-deployment.yaml), the Ledger Query Service can be deployed in a Kubernetes cluster. The Dockerfile is used to build a Docker image containing the service, while the Kubernetes deployment file is used to define how the service should be deployed and managed within the Kubernetes environment.
+- - Development of the Ledger Command Service was performed on a local machine where Kafka was installed and configured. Hence, it is assumed that Kafka is installed and available on the server where this service will be tested. The Ledger Query Service relies on Kafka for asynchronous event publication, and hence Kafka must be set up and properly configured for testing purposes.
 

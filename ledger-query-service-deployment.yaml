@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ledger-query-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ledger-query-service
+  template:
+    metadata:
+      labels:
+        app: ledger-query-service
+    spec:
+      containers:
+        - name: ledger-query-service
+          image: docker.io/ledger-query-service:latest
+          ports:
+            - containerPort: 8080

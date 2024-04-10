@@ -19,7 +19,7 @@ public class HistoricalBalanceConsumer {
         this.objectMapper=objectMapper;
     }
 
-    @KafkaListener(topics = "ledger-historical-balance-event", groupId = "ledger-group")
+    @KafkaListener(topics = "${ledger.historical.balance.event.topic}", groupId = "${ledger.consumer.group.id}")
     public void consume(String message) {
         // Assuming the message contains the updated account state information
         // Parse the message and update the account state in the database

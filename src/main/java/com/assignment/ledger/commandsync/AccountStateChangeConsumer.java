@@ -18,13 +18,15 @@ public class AccountStateChangeConsumer {
 
     private final EntityMapper entityMapper;
 
+
+
     public AccountStateChangeConsumer(AccountRepository accountRepository,ObjectMapper objectMapper,EntityMapper entityMapper) {
         this.accountRepository = accountRepository;
         this.objectMapper=objectMapper;
         this.entityMapper = entityMapper;
     }
 
-    @KafkaListener(topics = "ledger-account-state-change-event", groupId = "ledger-group")
+    @KafkaListener(topics = "${ledger.account.state.change.event.topic}", groupId = "${ledger.consumer.group.id}")
     public void consume(String message) {
         // Assuming the message contains the updated account state information
         // Parse the message and update the account state in the database

@@ -2,6 +2,7 @@ package com.assignment.ledger.service;
 
 import com.assignment.ledger.dto.HistoricalBalanceViewDTO;
 import com.assignment.ledger.entity.HistoricalBalanceView;
+import com.assignment.ledger.exception.handler.GeneralException;
 import com.assignment.ledger.repository.HistoricalBalanceViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,11 @@ public class HistoricalBalanceViewService {
     }
 
     public List<HistoricalBalanceViewDTO> getHistoricalBalances(Long walletId, String timestamp) {
-        return transformToDTO(historicalBalanceViewRepository.findByWalletIdAndTimestamp(walletId, timestamp));
+        try {
+            return transformToDTO(historicalBalanceViewRepository.findByWalletIdAndTimestamp(walletId, timestamp));
+        } catch (Exception exception) {
+            throw new GeneralException("An error occurred while retrieving the historical balance");
+        }
     }
 
     public List<HistoricalBalanceViewDTO> transformToDTO(List<HistoricalBalanceView> historicalBalanceViews) {

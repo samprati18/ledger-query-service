@@ -23,7 +23,7 @@ public class WalletChangeConsumer {
         this.objectMapper=objectMapper;
         this.entityMapper=entityMapper;
     }
-    @KafkaListener(topics = "ledger-account-wallet-event", groupId = "ledger-group")
+    @KafkaListener(topics = "${ledger.account.wallet.event.topic}", groupId = "${ledger.consumer.group.id}")
     public void consume(String message) {
         WalletView walletView = entityMapper.convertToEntity(mapMessageToWalletView(message));
         log.info("WalletView  {} " , walletView);

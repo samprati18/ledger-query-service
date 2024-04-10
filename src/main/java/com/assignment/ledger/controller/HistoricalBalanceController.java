@@ -18,12 +18,11 @@ public class HistoricalBalanceController {
         this.historicalBalanceViewService = historicalBalanceViewService;
     }
 
-    @GetMapping("/historical-balances/{walletId}")
+    @GetMapping("/historicalBalances/{walletId}")
     public ResponseEntity<List<HistoricalBalanceViewDTO>> getHistoricalBalancesForWalletAtTimestamp(
             @PathVariable(value = "walletId") Long walletId,
             @RequestParam(value = "timestamp", required = false) String timestamp
     ) {
-        List<HistoricalBalanceViewDTO> historicalBalances = historicalBalanceViewService.getHistoricalBalances(walletId, timestamp);
-        return new ResponseEntity<>(historicalBalances, HttpStatus.OK);
+        return new ResponseEntity<>(historicalBalanceViewService.getHistoricalBalances(walletId, timestamp), HttpStatus.OK);
     }
 }
